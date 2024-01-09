@@ -6,10 +6,10 @@ from easymocap.bodymodel.smpl import SMPLModel
 from easymocap.mytools.debug_utils import log
 
 def try_to_download_SMPL(model_dir):
-    # cmd = 'wget https://www.dropbox.com/s/aeulffqzb3zmh8x/pare-github-data.zip'
-    # os.system(cmd)
+    cmd = 'wget https://www.dropbox.com/s/aeulffqzb3zmh8x/pare-github-data.zip'
+    os.system(cmd)
     os.makedirs(model_dir, exist_ok=True)
-    cmd = 'tar -xf ./extra_data/pare-github-data.zip -C {}'.format(model_dir)
+    cmd = 'unzip pare-github-data.zip -d {}'.format(model_dir)
     print('[RUN] {}'.format(cmd))
     os.system(cmd)
 

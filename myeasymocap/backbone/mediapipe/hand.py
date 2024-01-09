@@ -48,12 +48,12 @@ class MediaPipe:
 
     def __init__(self, ckpt) -> None:
         if not os.path.exists(ckpt):
-            cmd = 'wget -q https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task'
-            print('Cannot find {}, try to download it'.format(ckpt))
-            print(cmd)
-            os.system(cmd)
+            # cmd = 'wget -q https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task'
+            # print('Cannot find {}, try to download it'.format(ckpt))
+            # print(cmd)
+            # os.system(cmd)
             os.makedirs(os.path.dirname(ckpt), exist_ok=True)
-            cmd = 'mv hand_landmarker.task {}'.format(os.path.dirname(ckpt))
+            cmd = 'move ./extra_data/hand_landmarker.task {}'.format(os.path.dirname(ckpt))
             os.system(cmd)
         self.ckpt = ckpt
         self.detector = {}

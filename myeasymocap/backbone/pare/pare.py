@@ -12,10 +12,19 @@ import cv2
 
 def try_to_download():
     model_dir = os.path.join(os.path.dirname(__file__), '..', '..', 'models', 'pare')
-    cmd = 'wget https://www.dropbox.com/s/aeulffqzb3zmh8x/pare-github-data.zip'
-    os.system(cmd)
+    # cmd = 'wget https://www.dropbox.com/s/aeulffqzb3zmh8x/pare-github-data.zip'
+    # os.system(cmd)
+    
+    # 获取环境变量 EMC_DATA_DIR
+    emc_data_dir = os.environ.get('EMC_DATA_DIR')
+
+    # 检查环境变量是否存在
+    if not emc_data_dir:
+        print("环境变量 EMC_DATA_DIR 未设置")
+        return
+    
     os.makedirs(model_dir, exist_ok=True)
-    cmd = 'unzip pare-github-data.zip -d {}'.format(model_dir)
+    cmd = 'unzip {}/pare-github-data.zip -d {}'.format(emc_data_dir, model_dir)
     os.system(cmd)
 
 CFG = 'models/pare/data/pare/checkpoints/pare_w_3dpw_config.yaml'

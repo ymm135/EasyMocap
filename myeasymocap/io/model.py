@@ -6,10 +6,19 @@ from easymocap.bodymodel.smpl import SMPLModel
 from easymocap.mytools.debug_utils import log
 
 def try_to_download_SMPL(model_dir):
-    cmd = 'wget https://www.dropbox.com/s/aeulffqzb3zmh8x/pare-github-data.zip'
-    os.system(cmd)
+    # cmd = 'wget https://www.dropbox.com/s/aeulffqzb3zmh8x/pare-github-data.zip'
+    # os.system(cmd)
+    
+    # 获取环境变量 EMC_DATA_DIR
+    emc_data_dir = os.environ.get('EMC_DATA_DIR')
+
+    # 检查环境变量是否存在
+    if not emc_data_dir:
+        print("环境变量 EMC_DATA_DIR 未设置")
+        return
+    
     os.makedirs(model_dir, exist_ok=True)
-    cmd = 'unzip pare-github-data.zip -d {}'.format(model_dir)
+    cmd = 'unzip {}/pare-github-data.zip -d {}'.format(emc_data_dir,model_dir)
     print('[RUN] {}'.format(cmd))
     os.system(cmd)
 
